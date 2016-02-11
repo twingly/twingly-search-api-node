@@ -1,0 +1,20 @@
+{
+  "name": "twingly-search-api",
+  "version": "1.0.0",
+  "description": "Twingly Search API wrapper",
+  "main": "lib/client.js",
+  "dependencies": {
+    "xmldom": "^0.1.22",
+    "xpath": "0.0.21"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "nock-vcr": "0.0.0"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha -R spec --timeout 60000"
+  },
+  "author": "Roman Ragimoff <roma.ragimoff@gmail.com>",
+  "license": "MIT"
+}
