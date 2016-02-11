@@ -26,12 +26,12 @@ describe('client', function(){
 
     it('creation', function(){
         var c = new Client('test-key');
-        expect(c.user_agent).to.be.equal('Twingly Search JavaScript Client/' + c.VERSION);
+        expect(c.userAgent).to.be.equal('Twingly Search JavaScript Client/' + c.VERSION);
     });
 
     it('without api key as parameter', function(){
         var c = new Client();
-        expect(c.api_key).to.be.equal(process.env.TWINGLY_SEARCH_KEY);
+        expect(c.apiKey).to.be.equal(process.env.TWINGLY_SEARCH_KEY);
     });
 
     it('with no api key at all', function(){
@@ -44,7 +44,7 @@ describe('client', function(){
 
     it('with optional user agent given', function(){
         var c = new Client(null, 'Test User-Agent');
-        expect(c.user_agent).to.be.equal('Test User-Agent');
+        expect(c.userAgent).to.be.equal('Test User-Agent');
     });
 
     it('query', function(){
@@ -60,7 +60,7 @@ describe('client', function(){
         var c = new Client();
         var q = c.query();
         q.pattern = 'something';
-        c.execute_query(q, function(error, result){
+        c.executeQuery(q, function(error, result){
             nvcr.ejectCassette();
             expect(error).to.be.instanceof(TwinglyAuthError);
             done();
@@ -69,15 +69,15 @@ describe('client', function(){
 
     it('endpoint url', function(){
         var c = new Client();
-        expect(c.endpoint_url()).to.be.equal(c.BASE_URL + c.SEARCH_PATH)
+        expect(c.endpointUrl()).to.be.equal(c.BASE_URL + c.SEARCH_PATH)
     });
 });
 
 describe('errors', function(){
-    it('from_api_response_message', function(){
+    it('fromApiResponseMessage', function(){
         var e = new TwinglyError();
-        expect(e.from_api_response_message('... API key ...')).to.be.instanceof(TwinglyAuthError);
-        expect(e.from_api_response_message('server error')).to.be.instanceof(TwinglyServerError);
+        expect(e.fromApiResponseMessage('... API key ...')).to.be.instanceof(TwinglyAuthError);
+        expect(e.fromApiResponseMessage('server error')).to.be.instanceof(TwinglyServerError);
     });
 });
 
@@ -99,7 +99,7 @@ describe('parser', function(){
         });
     });
 
-    it('with unauthorized api_key result', function(done){
+    it('with unauthorized apiKey result', function(done){
         var data = fs.readFileSync('./test/fixtures/unauthorized_api_key_result.xml', {encoding: 'utf8'});
         (new Parser()).parse(data, function(error, result){
             expect(error).to.be.instanceof(TwinglyAuthError);
@@ -140,15 +140,15 @@ describe('post', function(){
             expect(p.url).to.be.a('string');
             expect(p.title).to.be.a('string');
             expect(p.summary).to.be.a('string');
-            expect(p.language_code).to.be.a('string');
+            expect(p.languageCode).to.be.a('string');
             expect(p.published).to.be.instanceof(Date);
             expect(p.indexed).to.be.instanceof(Date);
-            expect(p.blog_url).to.be.a('string');
-            expect(p.blog_name).to.be.a('string');
+            expect(p.blogUrl).to.be.a('string');
+            expect(p.blogName).to.be.a('string');
             expect(p.authority).to.be.a('number');
             expect(p.authority).to.be.equal(1);
-            expect(p.blog_rank).to.be.a('number');
-            expect(p.blog_rank).to.be.equal(2);
+            expect(p.blogRank).to.be.a('number');
+            expect(p.blogRank).to.be.equal(2);
             expect(p.tags).to.be.instanceof(Array);
             done();
         });
@@ -199,25 +199,25 @@ describe('query', function(){
         var q = c.query();
         q.pattern = 'christmas';
         q.language = 'en';
-        expect(q.request_parameters()['documentlang']).to.be.equal('en');
+        expect(q.requestParameters()['documentlang']).to.be.equal('en');
         done();
     });
 
-    it('query should add start_time', function(done){
+    it('query should add startTime', function(done){
         var c = new Client();
         var q = c.query();
         q.pattern = 'christmas';
-        q.start_time = new Date(Date.UTC(2012, 11, 28, 9, 1, 22));
-        expect(q.request_parameters()['ts']).to.be.equal('2012-12-28 09:01:22');
+        q.startTime = new Date(Date.UTC(2012, 11, 28, 9, 1, 22));
+        expect(q.requestParameters()['ts']).to.be.equal('2012-12-28 09:01:22');
         done();
     });
 
-    it('query should add end_time', function(done){
+    it('query should add endTime', function(done){
         var c = new Client();
         var q = c.query();
         q.pattern = 'christmas';
-        q.end_time = new Date(Date.UTC(2012, 11, 28, 9, 1, 22));
-        expect(q.request_parameters()['tsTo']).to.be.equal('2012-12-28 09:01:22');
+        q.endTime = new Date(Date.UTC(2012, 11, 28, 9, 1, 22));
+        expect(q.requestParameters()['tsTo']).to.be.equal('2012-12-28 09:01:22');
         done();
     });
 
@@ -225,8 +225,8 @@ describe('query', function(){
         var c = new Client();
         var q = c.query();
         q.pattern = 'christmas';
-        q.end_time = new Date(Date.UTC(2012, 11, 28, 9, 1, 22));
-        expect(q.url_parameters()).to.contain('tsTo=2012-12-28%2009%3A01%3A22');
+        q.endTime = new Date(Date.UTC(2012, 11, 28, 9, 1, 22));
+        expect(q.urlParameters()).to.contain('tsTo=2012-12-28%2009%3A01%3A22');
         done();
     });
 
@@ -234,7 +234,7 @@ describe('query', function(){
         var c = new Client();
         var q = c.query();
         q.pattern = 'spotify';
-        expect(q.url_parameters()).to.contain('searchpattern=spotify');
+        expect(q.urlParameters()).to.contain('searchpattern=spotify');
         done();
     });
 
@@ -269,10 +269,10 @@ describe('result', function(){
         var data = fs.readFileSync('./test/fixtures/valid_result.xml', {encoding: 'utf8'});
         (new Parser()).parse(data, function(error, result){
             expect(result.posts).to.be.instanceof(Array);
-            expect(result.number_of_matches_returned).to.be.a('number');
-            expect(result.number_of_matches_total).to.be.a('number');
-            expect(result.seconds_elapsed).to.be.a('number');
-            expect(result.all_results_returned()).to.be.equal(false);
+            expect(result.numberOfMatchesReturned).to.be.a('number');
+            expect(result.numberOfMatchesTotal).to.be.a('number');
+            expect(result.secondsElapsed).to.be.a('number');
+            expect(result.allResultsReturned()).to.be.equal(false);
             done();
         });
     });

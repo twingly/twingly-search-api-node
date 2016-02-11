@@ -6,7 +6,7 @@ var SearchPostStream = function(keyword, language) {
     this.query = this.client.query();
     this.query.pattern = 'sort-order:asc sort:published ' + keyword
     this.query.language = language || '';
-    this.query.start_time = new Date((new Date()).setHours((new Date()).getHours() - 240));
+    this.query.startTime = new Date((new Date()).setHours((new Date()).getHours() - 240));
 };
 
 SearchPostStream.prototype.each = function () {
@@ -22,11 +22,11 @@ SearchPostStream.prototype.each = function () {
                 if(error) {
                     cb(true);
                 } else {
-                    all_results_returned = result.all_results_returned();
+                    all_results_returned = result.allResultsReturned();
                     for(var i = 0; i < result.posts.length; i++) {
                         console.log(result.posts[i].url);
                     }
-                    self.query.start_time = result.posts[result.posts.length-1].published;
+                    self.query.startTime = result.posts[result.posts.length-1].published;
                     cb(false);
                 }
             });
