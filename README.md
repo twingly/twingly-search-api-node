@@ -62,7 +62,7 @@ Publish to [npm]:
 npm publish
 ```
 
-[PyPi]: https://npmjs.com
+[npm]: https://npmjs.com
 
 ## License
 
