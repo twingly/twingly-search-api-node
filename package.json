@@ -1,8 +1,12 @@
 {
   "name": "twingly-search-api",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Twingly Search API wrapper",
   "main": "lib/client.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bearburger/twingly-search-api-javascript.git"
+  },
   "dependencies": {
     "xmldom": "^0.1.22",
     "xpath": "0.0.21"

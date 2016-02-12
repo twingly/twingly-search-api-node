@@ -62,6 +62,20 @@ Publish to [npm]:
 npm publish
 ```
 
+### Testing
+
+To run all tests simply execute
+
+```shell
+npm test
+```
+
+and particular test case
+
+```shell
+npm test test\test_client
+```
+
 [npm]: https://npmjs.com
 
 ## License
