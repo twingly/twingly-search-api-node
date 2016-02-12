@@ -1,6 +1,6 @@
 # Twingly Search API JavaScript
 
-[![Build Status](https://travis-ci.org/bearburger/twingly-search-api-javascript.png?branch=master)](https://travis-ci.org/bearburger/twingly-search-api-javascript)
+[![Build Status](https://travis-ci.org/twingly/twingly-search-api-javascript.png?branch=master)](https://travis-ci.org/twingly/twingly-search-api-javascript)
 
 A JavaScript (NodeJS) library for Twingly's Search API (previously known as Analytics API). Twingly is a blog search service that provides a searchable API known as [Twingly Search API](https://developer.twingly.com/resources/search/).
 
