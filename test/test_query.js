@@ -89,7 +89,7 @@ describe('query', function(){
         done();
     });
 
-    it('query pattern', function(done){
+    it('query pattern network', function(done){
         nvcr.insertCassette('search_for_spotify_on_sv_blogs');
         var c = new Client();
         var q = c.query();
