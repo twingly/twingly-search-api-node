@@ -1,4 +1,4 @@
-var Client = require('../lib/client');
+var Client = require('twingly-search-api').Client;
 var async = require('async'); // this package is optional: npm install async
 
 var SearchPostStream = function(keyword, language) {

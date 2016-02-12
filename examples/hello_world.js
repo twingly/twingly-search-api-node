@@ -1,4 +1,4 @@
-var Client = require('../lib/client');
+var Client = require('twingly-search-api').Client;
 
 var client = new Client();
 var query = client.query();

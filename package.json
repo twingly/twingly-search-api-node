@@ -1,6 +1,6 @@
 {
   "name": "twingly-search-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Twingly Search API wrapper",
   "main": "lib/client.js",
   "dependencies": {
@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "jsdoc": "^3.4.0",
     "mocha": "^2.4.5",
     "nock-vcr": "0.0.0"
   },
