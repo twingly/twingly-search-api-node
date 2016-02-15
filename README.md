@@ -9,13 +9,13 @@ A Node.js library for Twingly's Search API (previously known as Analytics API). 
 Install npm
 
 ```shell
-npm install --save twingly-search-api
+npm install --save twingly-search
 ```
 
 ## Usage
 
 ```javascript
-var Client = require('twingly-search-api').Client;
+var Client = require('twingly-search').Client;
 
 var client = new Client();
 var query = client.query();
@@ -32,7 +32,7 @@ query.execute(function(error, result){
 });
 ```
 
-The `twingly-search-api` library talks to a commercial blog search API and requires an API key. Best practice is to set the `TWINGLY_SEARCH_KEY` environment variable to the obtained key. `Client` can be passed a key at initialization if your setup does not allow environment variables.
+The `twingly-search` library talks to a commercial blog search API and requires an API key. Best practice is to set the `TWINGLY_SEARCH_KEY` environment variable to the obtained key. `Client` can be passed a key at initialization if your setup does not allow environment variables.
 
 Library is documented with [jsdoc](http://usejsdoc.org/). To generate documentation run next command
 
