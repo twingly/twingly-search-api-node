@@ -5,3 +5,14 @@ node_js:
   - "5.0"
   - "iojs"
 sudo: false
+notifications:
+  email: false
+  hipchat:
+    on_success: never
+    on_failure: change
+    template:
+    - '%{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{message}
+      (<a href="%{build_url}">Details</a>/<a href="%{compare_url}">Change view</a>)'
+    format: html
+    rooms:
+      secure: LJhgGLBRNlhCMR/V+nSvyiCUONyaUKpDA5ARpMBquOV1929NG8Q4Z/KE9dkiRbtaE1jmlqrtkfmesHyV/10bro66eJ37HoJQd4x0h3RApKbhvbBC6oOda7LNrFegxx1B/zOuILpzB5F26+C+tYumoIeNvxwfHjAtQcmpiCl8O/fOAPdmbmlGSJSHH9NkXnPAzxm3oMJhLmOkTAXOOFI408WrLTrgSlX0Tj1maHa5uVDP56ySlr1l2Hjz+OsJlEmeLLq2QnlOa58ubvj5Hylh2uzk823+qT1gmCTtTm10ymAgo1hkyE67fjrKkDbwYVEvdsLhaP/J1D2vQ9gJKrkZgWolidxarSIkO075ox+EMP9Dpzh4le2DMiX6stQOTjVy31LcvYveoouqTep1HWl4W9wUyWRW/gkf5Xkpy4rYU5QqZkWRgrIyvZ3bxn60ygSyZh9RfmhLOEhee2l6Rta45n+GeMmONfIcd0KYtZtYZFzeDQCACA+tfFA65OFRamsIAElSnQPU+IYdNst0Yn5WdrBhyxCkaqiiI3WwyakenpaxAHgk+cHrOQnh45yiG7W0JpSZYCh44lfYxG1b1aAs6orn0H6dHS/2/AS0mFTqDDRMWi4dVfYUMFWEMTYiUBc7c23cTMkBFVWHTu5vBpPK2SOFz+a7tOL2KNuotRiS+bw=
