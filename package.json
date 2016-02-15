@@ -20,6 +20,9 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha -R spec --timeout 60000"
   },
-  "author": "Roman Ragimoff <roma.ragimoff@gmail.com>",
+  "author": "Twingly AB <support@twingly.com> (https://twingly.com/)",
+  "contributors": [
+    "Roman Ragimoff <roma.ragimoff@gmail.com>",
+  ],
   "license": "MIT"
 }
