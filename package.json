@@ -1,6 +1,6 @@
 {
   "name": "twingly-search",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "description": "Twingly Search API client",
   "main": "lib/client.js",
   "repository": {
