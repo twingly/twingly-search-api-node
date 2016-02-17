@@ -73,7 +73,12 @@ npm test
 and particular test case
 
 ```shell
+# Unix
+npm test test/test_client
+
+# Windows
 npm test test\test_client
+
 ```
 
 [npm]: https://npmjs.com
