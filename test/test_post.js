@@ -5,7 +5,7 @@ var Parser = require('../lib/parser');
 
 describe('post', function(){
     it('creation', function(done){
-        var data = fs.readFileSync('./test/fixtures/valid_result.xml', {encoding: 'utf8'});
+        var data = fs.readFileSync('./test/fixtures/minimal_valid_result.xml', {encoding: 'utf8'});
         (new Parser()).parse(data, function(error, result){
             var p = result.posts[0];
             expect(p.url).to.be.a('string');
@@ -19,7 +19,7 @@ describe('post', function(){
             expect(p.authority).to.be.a('number');
             expect(p.authority).to.be.equal(1);
             expect(p.blogRank).to.be.a('number');
-            expect(p.blogRank).to.be.equal(2);
+            expect(p.blogRank).to.be.equal(1);
             expect(p.tags).to.be.instanceof(Array);
             done();
         });

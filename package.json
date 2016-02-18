@@ -13,6 +13,8 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "chai-datetime": "^1.4.0",
+    "chai-fuzzy": "^1.6.0",
     "jsdoc": "^3.4.0",
     "mocha": "^2.4.5",
     "nock-vcr": "0.0.0"

@@ -2,6 +2,7 @@ var expect = require('chai').expect;
 var fs = require('fs');
 
 var Parser = require('../lib/parser');
+var Result = require('../lib/result');
 
 describe('result', function(){
     it('creation', function(done){
