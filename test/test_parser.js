@@ -11,14 +11,6 @@ var Result = require('../lib/result');
 var Post = require('../lib/post');
 
 describe('parser', function(){
-    it('with a valid result', function(done){
-        var data = fs.readFileSync('./test/fixtures/valid_result.xml', {encoding: 'utf8'});
-        (new Parser()).parse(data, function(error, result){
-            expect(result).to.be.instanceof(Result);
-            done();
-        });
-    });
-
     context('with a minimal valid result', function(){
         var data = fs.readFileSync('./test/fixtures/minimal_valid_result.xml', {encoding: 'utf8'});
         var result;
