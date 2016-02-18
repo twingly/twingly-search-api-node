@@ -8,7 +8,7 @@ var TwinglyAuthError = require('../lib/errors').TwinglyAuthError;
 var TwinglyServerError = require('../lib/errors').TwinglyServerError;
 var Parser = require('../lib/parser');
 var Result = require('../lib/result');
-var Post   = require('../lib/post');
+var Post = require('../lib/post');
 
 describe('parser', function(){
     it('with a valid result', function(done){
@@ -191,7 +191,6 @@ describe('parser', function(){
                 expect(post.tags).to.be.like([]);
             });
         });
-
     });
 
     it('with valid result containing non blogs', function(done){
