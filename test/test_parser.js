@@ -22,6 +22,10 @@ describe('parser', function(){
             });
         });
 
+        it('should be a instance of Result', function(){
+            expect(result).to.be.instanceof(Result);
+        });
+
         describe('#posts[0]', function() {
             var index = 0;
 
