@@ -22,7 +22,7 @@ describe('parser', function(){
             });
         });
 
-        it('should be a instance of Result', function(){
+        it('should be an instance of Result', function(){
             expect(result).to.be.instanceof(Result);
         });
 
