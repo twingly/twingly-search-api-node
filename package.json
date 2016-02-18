@@ -8,6 +8,8 @@
     "url": "git://github.com/twingly/twingly-search-api-node.git"
   },
   "dependencies": {
+    "chai-datetime": "^1.4.0",
+    "chai-fuzzy": "^1.6.0",
     "xmldom": "^0.1.22",
     "xpath": "0.0.21"
   },
