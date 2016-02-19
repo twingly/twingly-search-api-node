@@ -1,12 +1,13 @@
+var setup = require('./support/setup');
+
 var expect = require('chai').expect;
-var fs = require('fs');
 
 var Parser = require('../lib/parser');
 var Result = require('../lib/result');
 
 describe('result', function(){
     it('creation', function(done){
-        var data = fs.readFileSync('./test/fixtures/valid_result.xml', {encoding: 'utf8'});
+        var data = setup.getFixture('valid_result');
         (new Parser()).parse(data, function(error, result){
             expect(result.posts).to.be.instanceof(Array);
             expect(result.numberOfMatchesReturned).to.be.a('number');
