@@ -1,3 +1,5 @@
+var setup = require('./support/setup');
+
 var expect = require('chai').expect;
 var should = require('chai').should();
 var nvcr = require('nock-vcr');
@@ -88,16 +90,22 @@ describe('query', function(){
         done();
     });
 
-    it('query pattern network', function(done){
-        nvcr.insertCassette('search_for_spotify_on_sv_blogs');
-        var c = new Client();
-        var q = c.query();
-        q.pattern = 'spotify page-size:10';
-        q.language = 'sv';
-        q.execute(function(error, result){
-            nvcr.ejectCassette();
-            expect(result.posts.length).to.not.be.empty;
-            done();
+    describe('#execute', function() {
+        before(function(){
+            process.env['TWINGLY_SEARCH_KEY'] = 'test-key'; // used by the cassette
+        });
+
+        it('query pattern network', function(done){
+            nvcr.insertCassette('search_for_spotify_on_sv_blogs');
+            var c = new Client();
+            var q = c.query();
+            q.pattern = 'spotify page-size:10';
+            q.language = 'sv';
+            q.execute(function(error, result){
+                nvcr.ejectCassette();
+                expect(result.posts.length).to.not.be.empty;
+                done();
+            });
         });
     });
 });
