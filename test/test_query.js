@@ -97,7 +97,7 @@ describe('query', function(){
         q.language = 'sv';
         q.execute(function(error, result){
             nvcr.ejectCassette();
-            expect(result.posts.length).to.be.at.least(0);
+            expect(result.posts.length).to.not.be.empty;
             done();
         });
     });
