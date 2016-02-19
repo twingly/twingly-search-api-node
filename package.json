@@ -20,7 +20,7 @@
     "nock-vcr": "0.0.0"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha -R spec --timeout 60000"
+    "test": "./node_modules/.bin/mocha"
   },
   "author": "Twingly AB <support@twingly.com> (https://twingly.com/)",
   "contributors": [
