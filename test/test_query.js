@@ -1,5 +1,4 @@
 var expect = require('chai').expect;
-var fs = require('fs');
 var should = require('chai').should();
 var nvcr = require('nock-vcr');
 
