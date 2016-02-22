@@ -70,15 +70,10 @@ To run all tests simply execute
 npm test
 ```
 
-and particular test case
+To run a particular test case (or use [`--grep`](https://mochajs.org/#usage))
 
 ```shell
-# Unix
-npm test test/test_client
-
-# Windows
-npm test test\test_client
-
+./node_modules/.bin/mocha test/test_query
 ```
 
 [npm]: https://npmjs.com

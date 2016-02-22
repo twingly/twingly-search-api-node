@@ -17,10 +17,11 @@
     "chai-fuzzy": "^1.6.0",
     "jsdoc": "^3.4.0",
     "mocha": "^2.4.5",
-    "nock-vcr": "0.0.0"
+    "nock-vcr": "0.0.0",
+    "rocha": "^2.0.0"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/rocha test/test_*.js"
   },
   "author": "Twingly AB <support@twingly.com> (https://twingly.com/)",
   "contributors": [
