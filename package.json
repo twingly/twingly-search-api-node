@@ -21,7 +21,8 @@
     "rocha": "^2.0.0"
   },
   "scripts": {
-    "test": "./node_modules/.bin/rocha test/test_*.js"
+    "random": "./node_modules/.bin/rocha test/test_*.js",
+    "test": "./node_modules/.bin/mocha"
   },
   "author": "Twingly AB <support@twingly.com> (https://twingly.com/)",
   "contributors": [
