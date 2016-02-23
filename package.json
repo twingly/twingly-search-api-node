@@ -21,6 +21,7 @@
     "rocha": "^2.0.0"
   },
   "scripts": {
+    "preversion": "npm test",
     "random": "./node_modules/.bin/rocha test/test_*.js",
     "test": "./node_modules/.bin/mocha"
   },
