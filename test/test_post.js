@@ -1,11 +1,12 @@
+var setup = require('./support/setup');
+
 var expect = require('chai').expect;
-var fs = require('fs');
 
 var Parser = require('../lib/parser');
 
 describe('post', function(){
     it('creation', function(done){
-        var data = fs.readFileSync('./test/fixtures/minimal_valid_result.xml', {encoding: 'utf8'});
+        var data = setup.getFixture('minimal_valid_result');
         (new Parser()).parse(data, function(error, result){
             var p = result.posts[0];
             expect(p.url).to.be.a('string');

@@ -1,4 +1,5 @@
-var fs = require('fs');
+var setup = require('./support/setup');
+
 var chai = require('chai');
 var expect = chai.expect;
 chai.use(require('chai-datetime'));
@@ -12,7 +13,7 @@ var Post = require('../lib/post');
 
 describe('parser', function(){
     context('with a minimal valid result', function(){
-        var data = fs.readFileSync('./test/fixtures/minimal_valid_result.xml', {encoding: 'utf8'});
+        var data = setup.getFixture('minimal_valid_result');
         var result;
 
         before(function(done) {
@@ -190,7 +191,7 @@ describe('parser', function(){
     });
 
     it('with valid result containing non blogs', function(done){
-        var data = fs.readFileSync('./test/fixtures/valid_non_blog_result.xml', {encoding: 'utf8'});
+        var data = setup.getFixture('valid_non_blog_result');
         (new Parser()).parse(data, function(error, result){
             expect(result).to.be.instanceof(Result);
             expect(result.posts.length).to.be.equal(1);
@@ -199,7 +200,7 @@ describe('parser', function(){
     });
 
     it('with unauthorized apiKey result', function(done){
-        var data = fs.readFileSync('./test/fixtures/unauthorized_api_key_result.xml', {encoding: 'utf8'});
+        var data = setup.getFixture('unauthorized_api_key_result');
         (new Parser()).parse(data, function(error, result){
             expect(error).to.be.instanceof(TwinglyAuthError);
             done();
@@ -207,7 +208,7 @@ describe('parser', function(){
     });
 
     it('with service unavailable result', function(done){
-        var data = fs.readFileSync('./test/fixtures/service_unavailable_result.xml', {encoding: 'utf8'});
+        var data = setup.getFixture('service_unavailable_result');
         (new Parser()).parse(data, function(error, result){
             expect(error).to.be.instanceof(TwinglyServerError);
             done();
@@ -215,7 +216,7 @@ describe('parser', function(){
     });
 
     it('with undefined error result', function(done){
-        var data = fs.readFileSync('./test/fixtures/undefined_error_result.xml', {encoding: 'utf8'});
+        var data = setup.getFixture('undefined_error_result');
         (new Parser()).parse(data, function(error, result){
             expect(error).to.be.instanceof(TwinglyServerError);
             done();
@@ -223,7 +224,7 @@ describe('parser', function(){
     });
 
     it('with non-XML error result', function(done){
-        var data = fs.readFileSync('./test/fixtures/non_xml_result.xml', {encoding: 'utf8'});
+        var data = setup.getFixture('non_xml_result');
         (new Parser()).parse(data, function(error, result){
             expect(error).to.be.instanceof(TwinglyServerError);
             done();

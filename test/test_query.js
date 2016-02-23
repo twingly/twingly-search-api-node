@@ -1,5 +1,6 @@
+var setup = require('./support/setup');
+
 var expect = require('chai').expect;
-var fs = require('fs');
 var should = require('chai').should();
 var nvcr = require('nock-vcr');
 
@@ -14,13 +15,13 @@ describe('query', function(){
         done();
     });
 
-    it('query without client', function(){
+    it('can\'t create query without client', function(){
         expect(function(){
             var q = new Query();
         }).to.throw('You can\'t create Query object directly');
     });
 
-    it('query with valid pattern', function(done){
+    it('with valid pattern', function(done){
         var c = new Client();
         var q = c.query();
         q.pattern = 'christmas';
@@ -28,7 +29,7 @@ describe('query', function(){
         done();
     });
 
-    it('query without valid pattern', function(){
+    it('without valid pattern should throw error', function(){
         expect(function(){
             var c = new Client();
             var q = c.query();
@@ -36,7 +37,7 @@ describe('query', function(){
         }).to.throw('Missing pattern');
     });
 
-    it('query with empty pattern', function(){
+    it('with empty pattern should throw error', function(){
         expect(function(){
             var c = new Client();
             var q = c.query();
@@ -45,7 +46,7 @@ describe('query', function(){
         }).to.throw('Missing pattern');
     });
 
-    it('query should add language', function(done){
+    it('should add language', function(done){
         var c = new Client();
         var q = c.query();
         q.pattern = 'christmas';
@@ -54,25 +55,99 @@ describe('query', function(){
         done();
     });
 
-    it('query should add startTime', function(done){
-        var c = new Client();
-        var q = c.query();
-        q.pattern = 'christmas';
-        q.startTime = new Date(Date.UTC(2012, 11, 28, 9, 1, 22));
-        expect(q.requestParameters()['ts']).to.be.equal('2012-12-28 09:01:22');
-        done();
+    describe('.startTime', function(){
+        context('when given time in UTC', function(){
+            var startTime = new Date(Date.UTC(2012, 11, 28, 9, 1, 22));
+
+            it('should not change timezone', function(done){
+                var c = new Client();
+                var q = c.query();
+                q.pattern = 'christmas';
+                q.startTime = startTime;
+                expect(q.requestParameters()['ts']).to.be.equal('2012-12-28 09:01:22');
+                done();
+            });
+
+            it('should not modify the given date object', function(done){
+                var c = new Client();
+                var q = c.query();
+                q.pattern = 'christmas';
+                q.startTime = startTime;
+                expect(q.startTime).to.be.equal(startTime);
+                done();
+            });
+        });
+
+        context('when given non-UTC time', function(){
+            var startTime = new Date(Date.parse("2016-02-09 07:02:33 +05:00"));
+
+            it('should convert to UTC', function(done){
+                var c = new Client();
+                var q = c.query();
+                q.pattern = 'christmas';
+                q.startTime = startTime;
+                expect(q.requestParameters()['ts']).to.be.equal('2016-02-09 02:02:33');
+                done();
+            });
+
+            it('should not modify the given date object', function(done){
+                var c = new Client();
+                var q = c.query();
+                q.pattern = 'christmas';
+                q.startTime = startTime;
+                expect(q.startTime).to.be.equal(startTime);
+                done();
+            });
+        });
     });
 
-    it('query should add endTime', function(done){
-        var c = new Client();
-        var q = c.query();
-        q.pattern = 'christmas';
-        q.endTime = new Date(Date.UTC(2012, 11, 28, 9, 1, 22));
-        expect(q.requestParameters()['tsTo']).to.be.equal('2012-12-28 09:01:22');
-        done();
+    describe('.endTime', function(){
+        context('when given time in UTC', function(){
+            var endTime = new Date(Date.UTC(2012, 11, 28, 9, 1, 22));
+
+            it('should not change timezone', function(done){
+                var c = new Client();
+                var q = c.query();
+                q.pattern = 'christmas';
+                q.endTime = endTime;
+                expect(q.requestParameters()['tsTo']).to.be.equal('2012-12-28 09:01:22');
+                done();
+            });
+
+            it('should not modify the given date object', function(done){
+                var c = new Client();
+                var q = c.query();
+                q.pattern = 'christmas';
+                q.endTime = endTime;
+                expect(q.endTime).to.be.equal(endTime);
+                done();
+            });
+        });
+
+        context('when given non-UTC time', function(){
+            var endTime = new Date(Date.parse("2016-02-09 07:02:33 +05:00"));
+
+            it('should convert to UTC', function(done){
+                var c = new Client();
+                var q = c.query();
+                q.pattern = 'christmas';
+                q.endTime = endTime;
+                expect(q.requestParameters()['tsTo']).to.be.equal('2016-02-09 02:02:33');
+                done();
+            });
+
+            it('should not modify the given date object', function(done){
+                var c = new Client();
+                var q = c.query();
+                q.pattern = 'christmas';
+                q.endTime = endTime;
+                expect(q.endTime).to.be.equal(endTime);
+                done();
+            });
+        });
     });
 
-    it('query should encode url parameters', function(done){
+    it('should encode url parameters', function(done){
         var c = new Client();
         var q = c.query();
         q.pattern = 'christmas';
@@ -81,7 +156,7 @@ describe('query', function(){
         done();
     });
 
-    it('query pattern', function(done){
+    it('should add searchpattern', function(done){
         var c = new Client();
         var q = c.query();
         q.pattern = 'spotify';
@@ -89,16 +164,24 @@ describe('query', function(){
         done();
     });
 
-    it('query pattern network', function(done){
-        nvcr.insertCassette('search_for_spotify_on_sv_blogs');
-        var c = new Client();
-        var q = c.query();
-        q.pattern = 'spotify page-size:10';
-        q.language = 'sv';
-        q.execute(function(error, result){
-            nvcr.ejectCassette();
-            expect(result.posts.length).to.be.at.least(0);
-            done();
+    describe('#execute()', function() {
+        context('when searching for spotify', function(){
+            before(function(){
+                process.env['TWINGLY_SEARCH_KEY'] = 'test-key'; // used by the cassette
+            });
+
+            it('should get posts', function(done){
+                nvcr.insertCassette('search_for_spotify_on_sv_blogs');
+                var c = new Client();
+                var q = c.query();
+                q.pattern = 'spotify page-size:10';
+                q.language = 'sv';
+                q.execute(function(error, result){
+                    nvcr.ejectCassette();
+                    expect(result.posts.length).to.not.be.empty;
+                    done();
+                });
+            });
         });
     });
 });

@@ -66,20 +66,19 @@ npm publish
 
 To run all tests simply execute
 
-```shell
-npm test
-```
+    npm test
 
-and particular test case
+Run with test order (per file) randomized by [rocha](https://github.com/bahmutov/rocha)
 
-```shell
-# Unix
-npm test test/test_client
+    npm run random
 
-# Windows
-npm test test\test_client
+To run a particular test case
 
-```
+    npm test test/test_query
+
+or use [`--grep`](https://mochajs.org/#usage)
+
+    npm test -- --grep parser
 
 [npm]: https://npmjs.com
 
