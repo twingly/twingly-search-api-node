@@ -82,6 +82,29 @@ or use [`--grep`](https://mochajs.org/#usage)
 
 [npm]: https://npmjs.com
 
+## Release workflow
+
+Docs: [`npm-version`](https://docs.npmjs.com/cli/version), [`npm-publish`](https://docs.npmjs.com/cli/publish), [`npm-adduser`](https://docs.npmjs.com/cli/adduser) (`npm login` is an alias to adduser)
+
+Make sure you are logged in as [twingly](https://www.npmjs.com/~twingly):
+
+    npm login
+
+Bump the version:
+
+    npm version [<newversion> | major | minor | patch]
+
+Example (current version is `0.0.0`):
+
+    npm version major
+
+`npm version` will bump the `version` in `package.json` to `1.0.0`, make a commit with that change, tag that commit `v1.0.0` and push the commit and tag.
+
+Publish the latest version to the registry:
+
+    npm publish .
+
+
 ## License
 
 The MIT License (MIT)
