@@ -52,16 +52,6 @@ To learn more about the capabilities of the API, please read the [Twingly Search
   * [xmldom](https://www.npmjs.com/package/xmldom)
   * [xpath](https://www.npmjs.com/package/xpath)
 
-## Release
-
-Bump the version in [package.json](./package.json).
-
-Publish to [npm]:
-
-```shell
-npm publish
-```
-
 ### Testing
 
 To run all tests simply execute
