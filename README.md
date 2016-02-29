@@ -38,7 +38,7 @@ The `twingly-search` library talks to a commercial blog search API and requires 
 The library is documented with [jsdoc](http://usejsdoc.org/). To generate the documentation run
 
 ```shell
-node_modules/.bin/jsdoc -r ./lib
+npm run doc
 ```
 
 Example code can be found in [examples/](examples/).

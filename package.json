@@ -24,7 +24,8 @@
     "preversion": "npm test",
     "postversion": "git push && git push --tags",
     "random": "./node_modules/.bin/rocha test/test_*.js",
-    "test": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/mocha",
+    "doc": "./node_modules/.bin/jsdoc -r ./lib"
   },
   "author": "Twingly AB <support@twingly.com> (https://twingly.com/)",
   "contributors": [
