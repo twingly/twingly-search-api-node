@@ -34,7 +34,7 @@ query.execute(function(error, result){
 
 The `twingly-search` library talks to a commercial blog search API and requires an API key. Best practice is to set the `TWINGLY_SEARCH_KEY` environment variable to the obtained key. `Client` can be passed a key at initialization if your setup does not allow environment variables.
 
-Library is documented with [jsdoc](http://usejsdoc.org/). To generate documentation run next command
+The library is documented with [jsdoc](http://usejsdoc.org/). To generate the documentation run
 
 ```shell
 node_modules/.bin/jsdoc -r ./lib
@@ -47,10 +47,9 @@ To learn more about the capabilities of the API, please read the [Twingly Search
 ## Requirements
 
 * API key, contact sales@twingly.com via [twingly.com](https://www.twingly.com/try-for-free/) to get one
-* Node.js
-  * Node.js 0.12, Node.js 4, Node.js 5
-  * [xmldom](https://www.npmjs.com/package/xmldom)
-  * [xpath](https://www.npmjs.com/package/xpath)
+* Node.js 0.12, 4, 5
+
+## Development
 
 ### Testing
 
@@ -72,7 +71,7 @@ or use [`--grep`](https://mochajs.org/#usage)
 
 [npm]: https://npmjs.com
 
-## Release workflow
+### Release workflow
 
 Docs: [`npm-version`](https://docs.npmjs.com/cli/version), [`npm-publish`](https://docs.npmjs.com/cli/publish), [`npm-adduser`](https://docs.npmjs.com/cli/adduser) (`npm login` is an alias to adduser)
 
