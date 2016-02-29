@@ -21,11 +21,12 @@ var client = new Client();
 var query = client.query();
 query.pattern = 'github page-size:10';
 query.language = 'sv';
+
 query.execute(function(error, result){
     if (error != false) {
         console.error(error);
     } else {
-        for(var i = 0; i < result.posts.length; i++) {
+        for(var i in result.posts) {
             console.log(result.posts[i].url);
         }
     }
