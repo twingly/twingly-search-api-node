@@ -199,6 +199,17 @@ describe('parser', function(){
         });
     });
 
+    it('with valid empty result', function(done){
+        var data = setup.getFixture('valid_empty_result');
+        (new Parser()).parse(data, function(error, result){
+            expect(result).to.be.instanceof(Result);
+            expect(result.posts.length).to.be.equal(0);
+            expect(result.numberOfMatchesTotal).to.be.equal(0);
+            expect(result.numberOfMatchesReturned).to.be.equal(0);
+            done();
+        });
+    });
+
     it('with unauthorized apiKey result', function(done){
         var data = setup.getFixture('unauthorized_api_key_result');
         (new Parser()).parse(data, function(error, result){
