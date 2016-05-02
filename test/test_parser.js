@@ -27,6 +27,11 @@ describe('parser', function(){
             expect(result).to.be.instanceof(Result);
         });
 
+        it('should set the amount of matches', function() {
+            expect(result.numberOfMatchesReturned).to.eq(3);
+            expect(result.numberOfMatchesTotal).to.eq(3);
+        });
+
         describe('#posts[0]', function() {
             var index = 0;
 
