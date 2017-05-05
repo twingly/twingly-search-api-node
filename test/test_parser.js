@@ -29,179 +29,118 @@ describe('parser', function(){
 
         it('should set the amount of matches', function() {
             expect(result.numberOfMatchesReturned).to.eq(3);
-            expect(result.numberOfMatchesTotal).to.eq(3);
+            expect(result.numberOfMatchesTotal).to.eq(3122050);
         });
 
         describe('#posts[0]', function() {
             var index = 0;
+            var post;
+
+            before(function(done) {
+                post = result.posts[index];
+                done();
+            });
+
+            it('#id', function() {
+                expect(post.id).to.eq('16405819479794412880');
+            });
+
+            it('#author', function() {
+                expect(post.author).to.eq('klivinihemligheten');
+            });
 
             it('#url', function() {
-                var post = result.posts[index];
-                expect(post.url).to.eq('http://oppogner.blogg.no/1409602010_bare_m_ha.html');
+                expect(post.url).to.eq('http://nouw.com/klivinihemligheten/planering---men-dalig-30016048');
             });
 
             it('#title', function() {
-                var post = result.posts[index];
-                expect(post.title).to.eq('Bare MÅ ha!');
+                expect(post.title).to.eq('Planering - men dålig');
             });
 
-            it('#summary', function() {
-                var post = result.posts[index];
-                expect(post.summary).to.eq('Ja, velkommen til høsten ...');
-            });
-
-            it('#languageCode', function() {
-                var post = result.posts[index];
-                expect(post.languageCode).to.eq('no');
-            });
-
-            it('#published', function() {
-                var post = result.posts[index];
-                expect(post.published).to.equalTime(new Date('2014-09-02 06:53:26 UTC'));
-            });
-
-            it('#indexed', function() {
-                var post = result.posts[index];
-                expect(post.indexed).to.equalTime(new Date('2014-09-02 09:00:53 UTC'));
-            });
-
-            it('#blogUrl', function() {
-                var post = result.posts[index];
-                expect(post.blogUrl).to.eq('http://oppogner.blogg.no/');
-            });
-
-            it('#authority', function() {
-                var post = result.posts[index];
-                expect(post.authority).to.eq(1);
-            });
-
-            it('#blogRank', function() {
-                var post = result.posts[index];
-                expect(post.blogRank).to.eq(1);
-            });
-
-            it('#tags', function() {
-                var post = result.posts[index];
-                expect(post.tags).to.be.like(['Blogg']);
-            });
-        });
-
-        describe('#posts[1]', function() {
-            var index = 1;
-
-            it('#url', function() {
-                var post = result.posts[index];
-                expect(post.url).to.eq('http://www.skvallernytt.se/hardtraning-da-galler-swedish-house-mafia');
-            });
-
-            it('#title', function() {
-                var post = result.posts[index];
-                expect(post.title).to.eq('Hårdträning – då gäller Swedish House Mafia');
-            });
-
-            it('#summary', function() {
-                var post = result.posts[index];
-                expect(post.summary).to.eq('Träning. Och Swedish House Mafia. Det verkar vara ett lyckat koncept. "Don\'t you worry child" och "Greyhound" är nämligen de två mest spelade träningslåtarna under januari 2013 på Spotify.\n\nRelaterade inlägg:\nSwedish House Mafia – ny låt!\nNy knivattack på Swedish House Mafia-konsert\nSwedish House Mafia gör succé i USA');
+            it('#text', function() {
+                expect(post.text).to.have.string('Det vart en förmiddag på boxen med en brud som jag lärt känna ');
             });
 
             it('#languageCode', function() {
-                var post = result.posts[index];
                 expect(post.languageCode).to.eq('sv');
             });
 
-            it('#published', function() {
-                var post = result.posts[index];
-                expect(post.published).to.equalTime(new Date('2013-01-29 15:21:56 UTC'));
+            it('#locationCode', function() {
+                expect(post.locationCode).to.eq('se');
             });
 
-            it('#indexed', function() {
-                var post = result.posts[index];
-                expect(post.indexed).to.equalTime(new Date('2013-01-29 15:22:52 UTC'));
+            it('#coordinates', function() {
+                expect(post.coordinates).to.be.empty;
             });
 
-            it('#blogUrl', function() {
-                var post = result.posts[index];
-                expect(post.blogUrl).to.eq('http://www.skvallernytt.se/');
-            });
-
-            it('#authority', function() {
-                var post = result.posts[index];
-                expect(post.authority).to.eq(38);
-            });
-
-            it('#blogRank', function() {
-                var post = result.posts[index];
-                expect(post.blogRank).to.eq(4);
+            it('#links', function() {
+              expect(post.links).to.be.like([]);
             });
 
             it('#tags', function() {
-                var post = result.posts[index];
-                expect(post.tags).to.be.like(['Okategoriserat', 'Träning', 'greyhound', 'koncept', 'mafia']);
-            });
-        });
-
-        describe('#posts[2]', function() {
-            var index = 2;
-
-            it('#url', function() {
-                var post = result.posts[index];
-                expect(post.url).to.eq('http://didriksinspesielleverden.blogg.no/1359472349_justin_bieber.html');
+              var expectedTags = [
+                "Ätas & drickas",
+                "Universitet & studentlivet",
+                "Träning",
+                "To to list",
+              ]
+              expect(post.tags).to.be.like(expectedTags);
             });
 
-            it('#title', function() {
-                var post = result.posts[index];
-                expect(post.title).to.eq('Justin Bieber');
+            it('#images', function() {
+              expect(post.images).to.be.like([]);
             });
 
-            it('#summary', function() {
-                var post = result.posts[index];
-                expect(post.summary).to.eq('OMG! Justin Bieber Believe acoustic albumet er nå ute på spotify. Han er helt super. Love him. Personlig liker jeg best beauty and a beat og as long as you love me, kommenter gjerne hva dere synes! <3 #sus YOLO');
+            it('#indexedAt', function() {
+              expect(post.indexedAt).to.equalTime(new Date('2017-05-04 06:51:23 UTC'));
             });
 
-            it('#languageCode', function() {
-                var post = result.posts[index];
-                expect(post.languageCode).to.eq('no');
+            it('#publishedAt', function() {
+                expect(post.publishedAt).to.equalTime(new Date('2017-05-04 06:50:59 UTC'));
             });
 
-            it('#published', function() {
-                var post = result.posts[index];
-                expect(post.published).to.equalTime(new Date('2013-01-29 15:12:29 UTC'));
+            it('#reindexedAt', function() {
+                expect(post.reindexedAt).to.equalTime(new Date('2017-05-04 08:51:23 UTC'));
             });
 
-            it('#indexed', function() {
-                var post = result.posts[index];
-                expect(post.indexed).to.equalTime(new Date('2013-01-29 15:14:37 UTC'));
+            it('#inlinksCount', function() {
+                expect(post.inlinksCount).to.eq(0);
+            });
+
+            it('#blogId', function() {
+                expect(post.blogId).to.eq('5312283800049632348');
+            });
+
+            it('#blogName', function() {
+                expect(post.blogName).to.eq('Love life like a student');
             });
 
             it('#blogUrl', function() {
-                var post = result.posts[index];
-                expect(post.blogUrl).to.eq('http://didriksinspesielleverden.blogg.no/');
-            });
-
-            it('#authority', function() {
-                var post = result.posts[index];
-                expect(post.authority).to.eq(0);
+                expect(post.blogUrl).to.eq('http://nouw.com/klivinihemligheten');
             });
 
             it('#blogRank', function() {
-                var post = result.posts[index];
                 expect(post.blogRank).to.eq(1);
             });
 
-            it('#tags', function() {
-                var post = result.posts[index];
-                expect(post.tags).to.be.like([]);
+            it('#authority', function() {
+              expect(post.authority).to.eq(0);
             });
         });
-    });
 
-    it('with valid result containing non blogs', function(done){
-        var data = setup.getFixture('valid_non_blog_result');
-        (new Parser()).parse(data, function(error, result){
-            expect(result).to.be.instanceof(Result);
-            expect(result.posts.length).to.be.equal(1);
-            done();
-        });
+
+
+
+
+
+
+
+
+
+
+
+
+
     });
 
     it('with valid empty result', function(done){

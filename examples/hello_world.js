@@ -2,7 +2,7 @@ var Client = require('../').Client;
 
 var client = new Client();
 var query = client.query();
-query.pattern = '"hello world"';
+query.searchQuery = '"hello world"';
 query.startTime = new Date((new Date()).setHours((new Date()).getHours() - 2));
 query.execute(function(error, result){
     if (error != false) {

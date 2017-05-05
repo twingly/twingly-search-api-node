@@ -21,38 +21,21 @@ describe('query', function(){
         }).to.throw('You can\'t create Query object directly');
     });
 
-    it('with valid pattern', function(done){
-        var c = new Client();
-        var q = c.query();
-        q.pattern = 'christmas';
-        expect(q.url()).to.contain('xmloutputversion=2');
-        done();
-    });
-
-    it('without valid pattern should throw error', function(){
+    it('without valid search query should throw error', function(){
         expect(function(){
             var c = new Client();
             var q = c.query();
             q.url();
-        }).to.throw('Missing pattern');
+        }).to.throw('Search query cannot be empty');
     });
 
-    it('with empty pattern should throw error', function(){
+    it('with empty search query should throw error', function(){
         expect(function(){
             var c = new Client();
             var q = c.query();
-            q.pattern = '';
+            q.searchQuery = '';
             q.url();
-        }).to.throw('Missing pattern');
-    });
-
-    it('should add language', function(done){
-        var c = new Client();
-        var q = c.query();
-        q.pattern = 'christmas';
-        q.language = 'en';
-        expect(q.requestParameters()['documentlang']).to.be.equal('en');
-        done();
+        }).to.throw('Search query cannot be empty');
     });
 
     describe('.startTime', function(){
@@ -62,18 +45,9 @@ describe('query', function(){
             it('should not change timezone', function(done){
                 var c = new Client();
                 var q = c.query();
-                q.pattern = 'christmas';
+                q.searchQuery = 'christmas';
                 q.startTime = startTime;
-                expect(q.requestParameters()['ts']).to.be.equal('2012-12-28 09:01:22');
-                done();
-            });
-
-            it('should not modify the given date object', function(done){
-                var c = new Client();
-                var q = c.query();
-                q.pattern = 'christmas';
-                q.startTime = startTime;
-                expect(q.startTime).to.be.equal(startTime);
+                expect(q.requestParameters()['q']).to.contain('start-date:2012-12-28 09:01:22');
                 done();
             });
         });
@@ -84,18 +58,9 @@ describe('query', function(){
             it('should convert to UTC', function(done){
                 var c = new Client();
                 var q = c.query();
-                q.pattern = 'christmas';
+                q.searchQuery = 'christmas';
                 q.startTime = startTime;
-                expect(q.requestParameters()['ts']).to.be.equal('2016-02-09 02:02:33');
-                done();
-            });
-
-            it('should not modify the given date object', function(done){
-                var c = new Client();
-                var q = c.query();
-                q.pattern = 'christmas';
-                q.startTime = startTime;
-                expect(q.startTime).to.be.equal(startTime);
+                expect(q.requestParameters()['q']).to.contain('start-date:2016-02-09 02:02:33');
                 done();
             });
         });
@@ -108,18 +73,9 @@ describe('query', function(){
             it('should not change timezone', function(done){
                 var c = new Client();
                 var q = c.query();
-                q.pattern = 'christmas';
+                q.searchQuery = 'christmas';
                 q.endTime = endTime;
-                expect(q.requestParameters()['tsTo']).to.be.equal('2012-12-28 09:01:22');
-                done();
-            });
-
-            it('should not modify the given date object', function(done){
-                var c = new Client();
-                var q = c.query();
-                q.pattern = 'christmas';
-                q.endTime = endTime;
-                expect(q.endTime).to.be.equal(endTime);
+                expect(q.requestParameters()['q']).to.contain('end-date:2012-12-28 09:01:22');
                 done();
             });
         });
@@ -130,18 +86,9 @@ describe('query', function(){
             it('should convert to UTC', function(done){
                 var c = new Client();
                 var q = c.query();
-                q.pattern = 'christmas';
+                q.searchQuery = 'christmas';
                 q.endTime = endTime;
-                expect(q.requestParameters()['tsTo']).to.be.equal('2016-02-09 02:02:33');
-                done();
-            });
-
-            it('should not modify the given date object', function(done){
-                var c = new Client();
-                var q = c.query();
-                q.pattern = 'christmas';
-                q.endTime = endTime;
-                expect(q.endTime).to.be.equal(endTime);
+                expect(q.requestParameters()['q']).to.contain('end-date:2016-02-09 02:02:33');
                 done();
             });
         });
@@ -150,17 +97,17 @@ describe('query', function(){
     it('should encode url parameters', function(done){
         var c = new Client();
         var q = c.query();
-        q.pattern = 'christmas';
+        q.searchQuery = 'christmas';
         q.endTime = new Date(Date.UTC(2012, 11, 28, 9, 1, 22));
-        expect(q.urlParameters()).to.contain('tsTo=2012-12-28%2009%3A01%3A22');
+        expect(q.urlParameters()).to.contain('end-date%3A2012-12-28%2009%3A01%3A22');
         done();
     });
 
-    it('should add searchpattern', function(done){
+    it('should add search query', function(done){
         var c = new Client();
         var q = c.query();
-        q.pattern = 'spotify';
-        expect(q.urlParameters()).to.contain('searchpattern=spotify');
+        q.searchQuery = 'spotify';
+        expect(q.urlParameters()).to.contain('q=spotify');
         done();
     });
 
@@ -174,14 +121,33 @@ describe('query', function(){
                 nvcr.insertCassette('search_for_spotify_on_sv_blogs');
                 var c = new Client();
                 var q = c.query();
-                q.pattern = 'spotify page-size:10';
-                q.language = 'sv';
+                q.searchQuery = 'spotify page-size:10 lang:sv';
                 q.execute(function(error, result){
                     nvcr.ejectCassette();
                     expect(result.posts.length).to.not.be.empty;
                     done();
                 });
             });
+        });
+    });
+
+    describe('#pattern', function() {
+        it('should assign the pattern to SearchQuery', function(done){
+            var c = new Client();
+            var q = c.query();
+            q.pattern = 'christmas';
+            expect(q.searchQuery).to.eq('christmas');
+            done();
+        });
+    });
+
+    describe('#language', function() {
+        it('should add language to SearchQuery', function(done){
+            var c = new Client();
+            var q = c.query();
+            q.language = 'en';
+            expect(q.requestParameters()['q']).to.contain('lang:en');
+            done();
         });
     });
 });

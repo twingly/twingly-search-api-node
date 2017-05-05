@@ -2,11 +2,16 @@ var Client = require('../').Client;
 var async = require('async'); // this package is optional: npm install async
 
 var SearchPostStream = function(keyword, language) {
+    var languageQuery = language ? 'lang:' + language : '';
     this.client = new Client(null, 'MyCompany/1.0');
     this.query = this.client.query();
-    this.query.pattern = 'sort-order:asc sort:published ' + keyword
-    this.query.language = language || '';
-    this.query.startTime = new Date((new Date()).setHours((new Date()).getHours() - 240));
+    this.query.searchQuery = 'sort-order:asc '
+      + languageQuery
+      + ' sort:published '
+      + keyword;
+
+    // 1 day ago
+    this.query.startTime = new Date(new Date().getTime() - (1000 * 60 * 60 * 24));
 };
 
 SearchPostStream.prototype.each = function () {
@@ -26,7 +31,10 @@ SearchPostStream.prototype.each = function () {
                     for(var i = 0; i < result.posts.length; i++) {
                         console.log(result.posts[i].url);
                     }
-                    self.query.startTime = result.posts[result.posts.length-1].published;
+                    if(result.posts.length > 0) {
+                        self.query.startTime = result.posts[result.posts.length-1].publishedAt;
+                    }
+
                     cb(false);
                 }
             });
@@ -34,5 +42,5 @@ SearchPostStream.prototype.each = function () {
     );
 };
 
-var stream = new SearchPostStream('(github) AND (hipchat OR slack) page-size:20')
+var stream = new SearchPostStream('github OR (hipchat AND slack) page-size:20')
 stream.each();

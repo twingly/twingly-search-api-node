@@ -61,11 +61,11 @@ describe('client', function(){
                 process.env['TWINGLY_SEARCH_KEY'] = setup.randomValueHex(16);
             });
 
-            it('should throw error on invalid API key', function() {
+            it('should throw error on invalid API key', function(done) {
                 nvcr.insertCassette('search_without_valid_api_key');
                 var c = new Client();
                 var q = c.query();
-                q.pattern = 'something';
+                q.searchQuery = 'something';
                 c.executeQuery(q, function(error, result){
                     nvcr.ejectCassette();
                     expect(error).to.be.instanceof(TwinglyAuthError);
