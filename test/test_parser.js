@@ -70,7 +70,8 @@ describe('parser', function(){
             });
 
             it('#coordinates', function() {
-                expect(post.coordinates).to.be.empty;
+                expect(post.coordinates.longitude).to.equal(10.75);
+                expect(post.coordinates.latitude).to.equal(49.1);
             });
 
             it('#links', function() {

@@ -17,6 +17,8 @@ describe('post', function(){
             expect(p.languageCode).to.be.a('string');
             expect(p.locationCode).to.be.a('string');
             expect(p.coordinates).to.be.instanceof(Object);
+            expect(p.coordinates.longitude).to.be.a('number');
+            expect(p.coordinates.latitude).to.be.a('number');
             expect(p.links).to.be.instanceof(Array);
             expect(p.tags).to.be.instanceof(Array);
             expect(p.images).to.be.instanceof(Array);
