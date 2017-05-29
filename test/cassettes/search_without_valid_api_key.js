@@ -2,14 +2,15 @@ module.exports = exports = function(nock) {
 var refs = [];
 
 refs[0] = nock('http://api.twingly.com:443')
-  .get('/analytics/Analytics.ashx?key=wrong&searchpattern=something&documentlang=&ts=&tsTo=&xmloutputversion=2')
-  .reply(200, "<?xml version=\"1.0\" encoding=\"UTF-8\"?><blogstream xmlns=\"http://www.twingly.com\">\r\n  <operationResult resultType=\"failure\">The API key does not exist.</operationResult>\r\n</blogstream>", { server: 'nginx',
-  date: 'Wed, 10 Feb 2016 23:37:40 GMT',
-  'content-type': 'text/xml; charset=utf-8',
-  'content-length': '183',
+  .get('/blog/search/api/v3/search?apikey=wrong&q=something')
+  .reply(401, "<?xml version=\"1.0\" encoding=\"utf-8\"?><error code=\"40101\"><message>Unauthorized</message></error>", { server: 'nginx',
+  date: 'Fri, 05 May 2017 11:51:05 GMT',
+  'content-type': 'application/xml; charset=utf-8',
+  'content-length': '97',
   connection: 'close',
-  'cache-control': 'private',
-  'set-cookie': [ 'SERVERID=web03; path=/' ] });
+  'cache-control': 'no-cache',
+  pragma: 'no-cache',
+  expires: '-1' });
 
 
 return refs;

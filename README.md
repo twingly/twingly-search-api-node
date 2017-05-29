@@ -19,8 +19,7 @@ var Client = require('twingly-search').Client;
 
 var client = new Client();
 var query = client.query();
-query.pattern = 'github page-size:10';
-query.language = 'sv';
+query.searchQuery = 'github page-size:10 lang:sv';
 
 query.execute(function(error, result){
     if (error != false) {
