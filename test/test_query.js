@@ -47,7 +47,7 @@ describe('query', function(){
                 var q = c.query();
                 q.searchQuery = 'christmas';
                 q.startTime = startTime;
-                expect(q.requestParameters()['q']).to.contain('start-date:2012-12-28 09:01:22');
+                expect(q.requestParameters()['q']).to.contain('start-date:2012-12-28T09:01:22.000Z');
                 done();
             });
         });
@@ -60,7 +60,7 @@ describe('query', function(){
                 var q = c.query();
                 q.searchQuery = 'christmas';
                 q.startTime = startTime;
-                expect(q.requestParameters()['q']).to.contain('start-date:2016-02-09 02:02:33');
+                expect(q.requestParameters()['q']).to.contain('start-date:2016-02-09T02:02:33.000Z');
                 done();
             });
         });
@@ -75,7 +75,7 @@ describe('query', function(){
                 var q = c.query();
                 q.searchQuery = 'christmas';
                 q.endTime = endTime;
-                expect(q.requestParameters()['q']).to.contain('end-date:2012-12-28 09:01:22');
+                expect(q.requestParameters()['q']).to.contain('end-date:2012-12-28T09:01:22.000Z');
                 done();
             });
         });
@@ -88,7 +88,7 @@ describe('query', function(){
                 var q = c.query();
                 q.searchQuery = 'christmas';
                 q.endTime = endTime;
-                expect(q.requestParameters()['q']).to.contain('end-date:2016-02-09 02:02:33');
+                expect(q.requestParameters()['q']).to.contain('end-date:2016-02-09T02:02:33.000Z');
                 done();
             });
         });
@@ -99,7 +99,7 @@ describe('query', function(){
         var q = c.query();
         q.searchQuery = 'christmas';
         q.endTime = new Date(Date.UTC(2012, 11, 28, 9, 1, 22));
-        expect(q.urlParameters()).to.contain('end-date%3A2012-12-28%2009%3A01%3A22');
+        expect(q.urlParameters()).to.contain('end-date%3A2012-12-28T09%3A01%3A22.000Z');
         done();
     });
 
