@@ -1,8 +1,11 @@
 language: node_js
 node_js:
   - "0.12"
-  - "4.0"
-  - "5.0"
+  - 4    # latest 4.x release
+  - 5    # latest 5.x release
+  - 6    # latest 6.x release
+  - 7    # latest 7.x release
+  - node # latest stable Node.js release
 sudo: false
 notifications:
   email: false
