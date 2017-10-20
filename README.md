@@ -75,6 +75,8 @@ or use [`--grep`](https://mochajs.org/#usage)
 
 Docs: [`npm-version`](https://docs.npmjs.com/cli/version), [`npm-publish`](https://docs.npmjs.com/cli/publish), [`npm-adduser`](https://docs.npmjs.com/cli/adduser) (`npm login` is an alias to adduser)
 
+Bump the version in [client.js](./lib/client.js) and commit.
+
 Make sure you are logged in as [twingly](https://www.npmjs.com/~twingly):
 
     npm login
