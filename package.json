@@ -18,7 +18,7 @@
     "marked": "^0.3.19",
     "mocha": "^2.4.5",
     "nock-vcr": "0.0.0",
-    "rocha": "^2.0.0"
+    "rocha": "^2.5.10"
   },
   "scripts": {
     "preversion": "npm test",
