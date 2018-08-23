@@ -1,7 +1,6 @@
 var setup = require('./support/setup');
 
 var expect = require('chai').expect;
-var nvcr = require('nock-vcr');
 var url = require('url');
 
 var Client = require('../lib/client').Client;
@@ -62,12 +61,10 @@ describe('client', function(){
             });
 
             it('should throw error on invalid API key', function(done) {
-                nvcr.insertCassette('search_without_valid_api_key');
                 var c = new Client();
                 var q = c.query();
                 q.searchQuery = 'something';
                 c.executeQuery(q, function(error, result){
-                    nvcr.ejectCassette();
                     expect(error).to.be.instanceof(TwinglyAuthError);
                     done();
                 });
