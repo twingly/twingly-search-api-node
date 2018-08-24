@@ -112,10 +112,6 @@ describe('query', function(){
 
     describe('#execute()', function() {
         context('when searching for spotify', function(){
-            before(function(){
-                process.env['TWINGLY_SEARCH_KEY'] = 'test-key'; // used by the cassette
-            });
-
             it('should get posts', function(done){
                 var c = new Client();
                 var q = c.query();

@@ -69,6 +69,13 @@ or use [`--grep`](https://mochajs.org/#usage)
 
     npm test -- --grep parser
 
+To record new fixtures, first remove the fixture and its associated `.headers` file.
+For fixtures requiring you to use a real API key you can specify it with:
+
+    TWINGLY_SEARCH_KEY=... npm test
+
+**IMPORTANT: The recorded fixture contains the API key. After recording a new fixture you need to remove the API key from the fixture manually. ([issue #29](https://github.com/twingly/twingly-search-api-node/issues/29))**
+
 [npm]: https://npmjs.com
 
 ### Release workflow

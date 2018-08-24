@@ -21,12 +21,15 @@ describe('client', function(){
     });
 
     context('with no api key at all', function(){
+        var originalApiKey;
+
         before(function() {
+            originalApiKey = process.env['TWINGLY_SEARCH_KEY'];
             delete process.env['TWINGLY_SEARCH_KEY'];
         });
 
         after(function() {
-            process.env['TWINGLY_SEARCH_KEY'] = setup.randomValueHex(16);
+            process.env['TWINGLY_SEARCH_KEY'] = originalApiKey;
         });
 
         it('should throw error', function(){
@@ -52,12 +55,15 @@ describe('client', function(){
 
     describe('#execute_query', function(done){
         context('with invalid api key', function(){
+            var originalApiKey;
+
             before(function() {
+                originalApiKey = process.env['TWINGLY_SEARCH_KEY'];
                 process.env['TWINGLY_SEARCH_KEY'] = 'wrong';
             });
 
             after(function() {
-                process.env['TWINGLY_SEARCH_KEY'] = setup.randomValueHex(16);
+                process.env['TWINGLY_SEARCH_KEY'] = originalApiKey
             });
 
             it('should throw error on invalid API key', function(done) {
