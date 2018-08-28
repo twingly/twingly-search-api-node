@@ -1,8 +1,11 @@
 var Helpers = require('./helpers').Helpers;
 var testHelper = new Helpers();
 
-// Do not record new fixtures if one already exists
-process.env['VCR_MODE'] = 'cache';
+if (typeof process.env['VCR_MODE'] === 'undefined') {
+    // Do not record new fixtures if one already exists
+    process.env['VCR_MODE'] = 'cache';
+}
+
 
 var path = require('path');
 var sepiaVcr = require('sepia');
