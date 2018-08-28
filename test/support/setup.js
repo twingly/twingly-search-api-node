@@ -1,7 +1,7 @@
 var Helpers = require('./helpers').Helpers;
 var testHelper = new Helpers();
 
-// Do not record new fixtures if one already exist
+// Do not record new fixtures if one already exists
 process.env['VCR_MODE'] = 'cache';
 
 var path = require('path');
