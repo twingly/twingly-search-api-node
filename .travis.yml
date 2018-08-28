@@ -3,10 +3,8 @@ node_js:
   - 4    # latest 4.x release
   - 6    # latest 6.x release
   - 8    # latest 8.x release
+  - 10   # latest 10.x release
   - node # latest stable Node.js release
-matrix:
-  allow_failures:
-    - node_js: node
 sudo: false
 notifications:
   email: false

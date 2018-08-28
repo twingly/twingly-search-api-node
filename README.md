@@ -69,6 +69,10 @@ or use [`--grep`](https://mochajs.org/#usage)
 
     npm test -- --grep parser
 
+To record new fixtures run the tests with `VCR_MODE=record`. For fixtures requiring you to use a real API key you need to specify that as well:
+
+    VCR_MODE=record TWINGLY_SEARCH_KEY=... npm test
+
 [npm]: https://npmjs.com
 
 ### Release workflow

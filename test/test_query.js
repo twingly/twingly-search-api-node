@@ -2,7 +2,6 @@ var setup = require('./support/setup');
 
 var expect = require('chai').expect;
 var should = require('chai').should();
-var nvcr = require('nock-vcr');
 
 var Client = require('../lib/client').Client;
 var Query = require('../lib/query');
@@ -113,17 +112,11 @@ describe('query', function(){
 
     describe('#execute()', function() {
         context('when searching for spotify', function(){
-            before(function(){
-                process.env['TWINGLY_SEARCH_KEY'] = 'test-key'; // used by the cassette
-            });
-
             it('should get posts', function(done){
-                nvcr.insertCassette('search_for_spotify_on_sv_blogs');
                 var c = new Client();
                 var q = c.query();
                 q.searchQuery = 'spotify page-size:10 lang:sv';
                 q.execute(function(error, result){
-                    nvcr.ejectCassette();
                     expect(result.posts.length).to.not.be.empty;
                     done();
                 });

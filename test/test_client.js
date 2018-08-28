@@ -1,7 +1,6 @@
 var setup = require('./support/setup');
 
 var expect = require('chai').expect;
-var nvcr = require('nock-vcr');
 var url = require('url');
 
 var Client = require('../lib/client').Client;
@@ -22,12 +21,15 @@ describe('client', function(){
     });
 
     context('with no api key at all', function(){
+        var originalApiKey;
+
         before(function() {
+            originalApiKey = process.env['TWINGLY_SEARCH_KEY'];
             delete process.env['TWINGLY_SEARCH_KEY'];
         });
 
         after(function() {
-            process.env['TWINGLY_SEARCH_KEY'] = setup.randomValueHex(16);
+            process.env['TWINGLY_SEARCH_KEY'] = originalApiKey;
         });
 
         it('should throw error', function(){
@@ -53,21 +55,22 @@ describe('client', function(){
 
     describe('#execute_query', function(done){
         context('with invalid api key', function(){
+            var originalApiKey;
+
             before(function() {
+                originalApiKey = process.env['TWINGLY_SEARCH_KEY'];
                 process.env['TWINGLY_SEARCH_KEY'] = 'wrong';
             });
 
             after(function() {
-                process.env['TWINGLY_SEARCH_KEY'] = setup.randomValueHex(16);
+                process.env['TWINGLY_SEARCH_KEY'] = originalApiKey
             });
 
             it('should throw error on invalid API key', function(done) {
-                nvcr.insertCassette('search_without_valid_api_key');
                 var c = new Client();
                 var q = c.query();
                 q.searchQuery = 'something';
                 c.executeQuery(q, function(error, result){
-                    nvcr.ejectCassette();
                     expect(error).to.be.instanceof(TwinglyAuthError);
                     done();
                 });
