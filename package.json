@@ -16,9 +16,9 @@
     "chai-fuzzy": "^1.6.0",
     "jsdoc": "^3.4.0",
     "marked": "^0.3.19",
-    "mocha": "^2.4.5",
+    "mocha": "^5.2.0",
     "replayer": "^2.2.3",
-    "rocha": "^2.0.0"
+    "rocha": "^2.5.10"
   },
   "scripts": {
     "preversion": "npm test",
