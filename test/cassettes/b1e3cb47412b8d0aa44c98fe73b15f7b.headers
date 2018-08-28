@@ -2,7 +2,7 @@
   "statusCode": 401,
   "headers": {
     "server": "nginx",
-    "date": "Fri, 24 Aug 2018 09:43:36 GMT",
+    "date": "Tue, 28 Aug 2018 11:27:57 GMT",
     "content-type": "application/xml; charset=utf-8",
     "content-length": "97",
     "connection": "keep-alive",
@@ -10,8 +10,8 @@
     "pragma": "no-cache",
     "expires": "-1"
   },
-  "url": "https://api.twingly.com:443/blog/search/api/v3/search?apikey=wrong&q=something",
-  "time": 55,
+  "url": "https://api.twingly.com:443/blog/search/api/v3/search?apikey=fake-key&q=something",
+  "time": 101,
   "request": {
     "headers": {
       "User-Agent": "Twingly Search JavaScript Client/1.1.1"

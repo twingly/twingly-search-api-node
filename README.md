@@ -73,8 +73,6 @@ To record new fixtures run the tests with `VCR_MODE=record`. For fixtures requir
 
     VCR_MODE=record TWINGLY_SEARCH_KEY=... npm test
 
-**IMPORTANT: The recorded fixture contains the API key. After recording a new fixture you need to change to a fake API key in the fixture manually. ([issue #29](https://github.com/twingly/twingly-search-api-node/issues/29))**
-
 [npm]: https://npmjs.com
 
 ### Release workflow
