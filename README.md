@@ -57,9 +57,9 @@ To run all tests simply execute
 
     npm test
 
-Run with test order (per file) randomized by [rocha](https://github.com/bahmutov/rocha)
+Run with test order (per file) randomized by [choma](https://github.com/lennym/choma)
 
-    npm run random
+    npm test -- --require choma
 
 To run a particular test case
 
