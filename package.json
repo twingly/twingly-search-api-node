@@ -14,16 +14,15 @@
     "chai": "^3.5.0",
     "chai-datetime": "^1.4.0",
     "chai-fuzzy": "^1.6.0",
+    "choma": "^1.2.1",
     "jsdoc": "^3.4.0",
     "marked": "^0.3.19",
     "mocha": "^5.2.0",
-    "replayer": "^2.2.3",
-    "rocha": "^2.5.10"
+    "replayer": "^2.2.3"
   },
   "scripts": {
     "preversion": "npm test",
     "postversion": "git push && git push --tags",
-    "random": "./node_modules/.bin/rocha test/test_*.js",
     "test": "./node_modules/.bin/mocha",
     "doc": "./node_modules/.bin/jsdoc -r ./lib"
   },
