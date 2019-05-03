@@ -51,6 +51,10 @@ To learn more about the capabilities of the API, please read the [Twingly Search
 
 ## Development
 
+Install dependencies
+
+    npm install
+
 ### Testing
 
 To run all tests simply execute
