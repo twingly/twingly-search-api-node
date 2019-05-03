@@ -34,11 +34,14 @@ query.execute(function(error, result){
 
 The `twingly-search` library talks to a commercial blog search API and requires an API key. Best practice is to set the `TWINGLY_SEARCH_KEY` environment variable to the obtained key. `Client` can be passed a key at initialization if your setup does not allow environment variables.
 
-The library is documented with [jsdoc](http://usejsdoc.org/). To generate the documentation run
+The library is documented with [JSDoc](https://github.com/jsdoc3/jsdoc). To generate the documentation, you need to install JSDoc, and then generate the documentation.
 
 ```shell
-npm run doc
+npm install -g jsdoc
+jsdoc -r ./lib
 ```
+
+Find the generated documentation in `out/index.html`.
 
 Example code can be found in [examples/](examples/).
 
