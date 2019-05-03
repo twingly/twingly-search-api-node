@@ -6,7 +6,7 @@ A Node.js library for Twingly's Search API (previously known as Analytics API). 
 
 ## Installation
 
-Install npm
+Install with npm
 
 ```shell
 npm install --save twingly-search
