@@ -1,9 +1,0 @@
-language: node_js
-node_js:
-  - 8    # latest 8.x release
-  - 10   # latest 10.x release
-  - 12   # latest 12.x release
-  - node # latest stable Node.js release
-sudo: false
-notifications:
-  email: false
