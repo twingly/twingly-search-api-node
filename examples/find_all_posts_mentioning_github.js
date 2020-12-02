@@ -5,10 +5,10 @@ var SearchPostStream = function(keyword, language) {
     var languageQuery = language ? 'lang:' + language : '';
     this.client = new Client(null, 'MyCompany/1.0');
     this.query = this.client.query();
-    this.query.searchQuery = 'sort-order:asc '
-      + languageQuery
-      + ' sort:published '
-      + keyword;
+    this.query.searchQuery = 'sort-order:asc ' +
+      languageQuery +
+      ' sort:published ' +
+      keyword;
 
     // 1 day ago
     this.query.startTime = new Date(new Date().getTime() - (1000 * 60 * 60 * 24));
@@ -42,5 +42,5 @@ SearchPostStream.prototype.each = function () {
     );
 };
 
-var stream = new SearchPostStream('github OR (hipchat AND slack) page-size:20')
+var stream = new SearchPostStream('github OR (hipchat AND slack) page-size:20');
 stream.each();
