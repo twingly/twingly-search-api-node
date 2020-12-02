@@ -84,7 +84,7 @@ describe('parser', function(){
                 "Universitet & studentlivet",
                 "Träning",
                 "To to list",
-              ]
+              ];
               expect(post.tags).to.be.like(expectedTags);
             });
 

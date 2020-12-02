@@ -63,7 +63,7 @@ describe('client', function(){
             });
 
             after(function() {
-                process.env['TWINGLY_SEARCH_KEY'] = originalApiKey
+                process.env['TWINGLY_SEARCH_KEY'] = originalApiKey;
             });
 
             it('should throw error on invalid API key', function(done) {
@@ -83,12 +83,12 @@ describe('client', function(){
         var expected = c.BASE_URL + c.SEARCH_PATH;
 
         it('should eq '+expected, function() {
-            expect(c.endpointUrl()).to.be.equal(expected)
+            expect(c.endpointUrl()).to.be.equal(expected);
         });
 
         it('should be parsable', function() {
             var parts = url.parse(c.endpointUrl());
-            expect(url.format(parts)).to.be.equal(expected)
+            expect(url.format(parts)).to.be.equal(expected);
         });
     });
 });
