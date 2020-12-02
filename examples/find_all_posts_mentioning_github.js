@@ -1,5 +1,5 @@
 var Client = require('../').Client;
-var async = require('async'); // this package is optional: npm install async
+var async = require('async'); // this package is optional: npm install async@2.6.1
 
 var SearchPostStream = function(keyword, language) {
     var languageQuery = language ? 'lang:' + language : '';
