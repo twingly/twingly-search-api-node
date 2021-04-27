@@ -4,8 +4,8 @@ var expect = require('chai').expect;
 
 var Parser = require('../lib/parser');
 
-describe('post', function(){
-    it('creation', function(done){
+describe('Post', function(){
+    it('can be constructed', function(done){
         var data = setup.getFixture('minimal_valid_result');
         (new Parser()).parse(data, function(error, result){
             var p = result.posts[0];
@@ -35,7 +35,7 @@ describe('post', function(){
         });
     });
 
-    context('deprecated properties', function(){
+    describe('deprecated properties', function(){
         it('should be equal to their non-deprecated version', function(done) {
             var data = setup.getFixture('minimal_valid_result');
             (new Parser()).parse(data, function(error, result){
