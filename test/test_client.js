@@ -7,20 +7,20 @@ var Client = require('../lib/client').Client;
 var Query = require('../lib/query');
 var TwinglyAuthError = require('../lib/errors').TwinglyAuthError;
 
-describe('client', function(){
-    it('creation', function(){
+describe('Client', function(){
+    it('can be constructed', function(){
         var c = new Client('test-key');
         expect(c.userAgent).to.be.equal('Twingly Search JavaScript Client/' + c.VERSION);
     });
 
     context('without api key as parameter', function(){
-        it('should be read from the environment', function(){
+        it('reads the key from the environment', function(){
             var c = new Client();
             expect(c.apiKey).to.be.equal(process.env.TWINGLY_SEARCH_KEY);
         });
     });
 
-    context('with no api key at all', function(){
+    context('when no apikey is given', function(){
         var originalApiKey;
 
         before(function() {
@@ -39,21 +39,21 @@ describe('client', function(){
         });
     });
 
-    context('with optional user agent given', function(){
-        it('should use that user agent', function(){
+    describe('#userAgent', function(){
+        it('sets the given user agent', function(){
             var c = new Client(null, 'Test User-Agent');
             expect(c.userAgent).to.be.equal('Test User-Agent');
         });
     });
 
-    describe('#query', function(){
+    describe('#query()', function(){
         it('should return an instance of Query', function(){
             var q = (new Client()).query();
             expect(q).to.be.instanceof(Query);
         });
     });
 
-    describe('#execute_query', function(done){
+    describe('#executeQuery()', function(){
         context('with invalid api key', function(){
             var originalApiKey;
 
@@ -66,7 +66,7 @@ describe('client', function(){
                 process.env['TWINGLY_SEARCH_KEY'] = originalApiKey;
             });
 
-            it('should throw error on invalid API key', function(done) {
+            it('should throw error', function(done) {
                 var c = new Client();
                 var q = c.query();
                 q.searchQuery = 'something';
@@ -78,7 +78,7 @@ describe('client', function(){
         });
     });
 
-    describe('#endpoint_url', function(){
+    describe('#endpointUrl()', function(){
         var c = new Client();
         var expected = c.BASE_URL + c.SEARCH_PATH;
 

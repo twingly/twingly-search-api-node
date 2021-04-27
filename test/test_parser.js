@@ -11,8 +11,8 @@ var Parser = require('../lib/parser');
 var Result = require('../lib/result');
 var Post = require('../lib/post');
 
-describe('parser', function(){
-    context('with a minimal valid result', function(){
+describe('Parser', function(){
+    context('when given a minimal valid result', function(){
         var data = setup.getFixture('minimal_valid_result');
         var result;
 
@@ -32,7 +32,7 @@ describe('parser', function(){
             expect(result.numberOfMatchesTotal).to.eq(3122050);
         });
 
-        describe('#posts[0]', function() {
+        describe('the first parsed post', function() {
             var index = 0;
             var post;
 
@@ -128,62 +128,58 @@ describe('parser', function(){
               expect(post.authority).to.eq(0);
             });
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     });
 
-    it('with valid empty result', function(done){
-        var data = setup.getFixture('valid_empty_result');
-        (new Parser()).parse(data, function(error, result){
-            expect(result).to.be.instanceof(Result);
-            expect(result.posts.length).to.be.equal(0);
-            expect(result.numberOfMatchesTotal).to.be.equal(0);
-            expect(result.numberOfMatchesReturned).to.be.equal(0);
-            done();
+    context('when given valid empty result', function(){
+        it('can parse it', function(done){
+            var data = setup.getFixture('valid_empty_result');
+            (new Parser()).parse(data, function(error, result){
+                expect(result).to.be.instanceof(Result);
+                expect(result.posts.length).to.be.equal(0);
+                expect(result.numberOfMatchesTotal).to.be.equal(0);
+                expect(result.numberOfMatchesReturned).to.be.equal(0);
+                done();
+            });
         });
     });
 
-    it('with unauthorized apiKey result', function(done){
-        var data = setup.getFixture('unauthorized_api_key_result');
-        (new Parser()).parse(data, function(error, result){
-            expect(error).to.be.instanceof(TwinglyAuthError);
-            done();
+    context('when receiving an unauthorized response', function(){
+        it('returns an error', function(done){
+            var data = setup.getFixture('unauthorized_api_key_result');
+            (new Parser()).parse(data, function(error, result){
+                expect(error).to.be.instanceof(TwinglyAuthError);
+                done();
+            });
         });
     });
 
-    it('with service unavailable result', function(done){
-        var data = setup.getFixture('service_unavailable_result');
-        (new Parser()).parse(data, function(error, result){
-            expect(error).to.be.instanceof(TwinglyServerError);
-            done();
+    context('when authentication service is unavailable', function(){
+        it('returns an error', function(done){
+            var data = setup.getFixture('service_unavailable_result');
+            (new Parser()).parse(data, function(error, result){
+                expect(error).to.be.instanceof(TwinglyServerError);
+                done();
+            });
         });
     });
 
-    it('with undefined error result', function(done){
-        var data = setup.getFixture('undefined_error_result');
-        (new Parser()).parse(data, function(error, result){
-            expect(error).to.be.instanceof(TwinglyServerError);
-            done();
+    context('when the API responds with an internal server error', function(){
+        it('returns an error', function(done){
+            var data = setup.getFixture('undefined_error_result');
+            (new Parser()).parse(data, function(error, result){
+                expect(error).to.be.instanceof(TwinglyServerError);
+                done();
+            });
         });
     });
 
-    it('with non-XML error result', function(done){
-        var data = setup.getFixture('non_xml_result');
-        (new Parser()).parse(data, function(error, result){
-            expect(error).to.be.instanceof(TwinglyServerError);
-            done();
+    context('when the API responds with non-XML', function(){
+        it('returns an error', function(done){
+            var data = setup.getFixture('non_xml_result');
+            (new Parser()).parse(data, function(error, result){
+                expect(error).to.be.instanceof(TwinglyServerError);
+                done();
+            });
         });
     });
 });

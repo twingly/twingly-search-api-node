@@ -5,8 +5,8 @@ var expect = require('chai').expect;
 var Parser = require('../lib/parser');
 var Result = require('../lib/result');
 
-describe('result', function(){
-    it('creation', function(done){
+describe('Result', function(){
+    it('can be constructed', function(done){
         var data = setup.getFixture('minimal_valid_result');
         (new Parser()).parse(data, function(error, result){
             expect(result.posts).to.be.instanceof(Array);
