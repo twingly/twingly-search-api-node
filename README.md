@@ -52,7 +52,7 @@ To learn more about the capabilities of the API, please read the [Twingly Search
 ## Requirements
 
 * API key, [sign up](https://www.twingly.com/try-for-free) via [twingly.com](https://www.twingly.com/) to get one
-* Node.js (any version listed in [`.travis.yml`](.travis.yml))
+* Node.js (any version listed in [`ci.yml`](.github/workflows/ci.yml))
 
 ## Development
 
