@@ -8,7 +8,7 @@
     "url": "git://github.com/twingly/twingly-search-api-node.git"
   },
   "dependencies": {
-    "xml2js": "^0.4.17"
+    "xml2js": "^0.5.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
