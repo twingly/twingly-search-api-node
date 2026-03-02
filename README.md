@@ -1,6 +1,6 @@
 # Twingly Search API Node
 
-[![GitHub Build Status](https://github.com/twingly/twingly-search-api-node/workflows/CI/badge.svg?branch=master)](https://github.com/twingly/twingly-search-api-node/actions)
+[![CI](https://github.com/twingly/twingly-search-api-node/actions/workflows/ci.yml/badge.svg)](https://github.com/twingly/twingly-search-api-node/actions/workflows/ci.yml)
 
 A Node.js library for Twingly's Search API (previously known as Analytics API). Twingly is a blog search service that provides a searchable API known as [Twingly Search API][Twingly Search API documentation].
 
